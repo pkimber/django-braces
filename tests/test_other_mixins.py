@@ -386,8 +386,8 @@ class TestFormMessageMixins(test.TestCase):
 
     def test_form_valid_returns_message(self):
         mixin = FormValidMessageMixin()
-        mixin.form_valid_message = u'Good øø'
-        self.assertEqual(u'Good øø', mixin.get_form_valid_message())
+        mixin.form_valid_message = 'Good øø'
+        self.assertEqual('Good øø', mixin.get_form_valid_message())
 
     def test_form_invalid_message_not_set(self):
         mixin = FormInvalidMessageMixin()
@@ -402,5 +402,5 @@ class TestFormMessageMixins(test.TestCase):
 
     def test_form_invalid_returns_message(self):
         mixin = FormInvalidMessageMixin()
-        mixin.form_invalid_message = u'Bad øø'
-        self.assertEqual(u'Bad øø', mixin.get_form_invalid_message())
+        mixin.form_invalid_message = 'Bad øø'
+        self.assertEqual('Bad øø', mixin.get_form_invalid_message())

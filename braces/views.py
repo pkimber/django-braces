@@ -495,7 +495,7 @@ class JSONResponseMixin(object):
     def get_json_dumps_kwargs(self):
         if self.json_dumps_kwargs is None:
             self.json_dumps_kwargs = {}
-        self.json_dumps_kwargs.setdefault(u'ensure_ascii', False)
+        self.json_dumps_kwargs.setdefault('ensure_ascii', False)
         return self.json_dumps_kwargs
 
     def render_json_response(self, context_dict, status=200):
@@ -505,7 +505,7 @@ class JSONResponseMixin(object):
         """
         json_context = json.dumps(context_dict, cls=DjangoJSONEncoder,
                                   **self.get_json_dumps_kwargs()).encode(
-                                  u'utf-8')
+                                  'utf-8')
         return HttpResponse(json_context,
                             content_type=self.get_content_type(),
                             status=status)
@@ -581,13 +581,13 @@ class JsonRequestResponseMixin(JSONResponseMixin):
             error_dict,
             cls=DjangoJSONEncoder,
             **self.get_json_dumps_kwargs()
-        ).encode(u'utf-8')
+        ).encode('utf-8')
         return HttpResponseBadRequest(
             json_context, content_type=self.get_content_type())
 
     def get_request_json(self):
         try:
-            return json.loads(self.request.body.decode(u'utf-8'))
+            return json.loads(self.request.body.decode('utf-8'))
         except ValueError:
             return None
 
