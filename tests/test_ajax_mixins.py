@@ -53,7 +53,7 @@ class TestAjaxResponseMixin(TestViewHelper, test.TestCase):
             m.return_value = HttpResponse()
             req = self.build_request()
             setattr(mixin, fallback, m)
-            fn = getattr(mixin, u"{0}_ajax".format(ajax_method))
+            fn = getattr(mixin, "{0}_ajax".format(ajax_method))
             ret = fn(req, 1, 2, meth=ajax_method)
             # check if appropriate method has been called
             m.assert_called_once_with(req, 1, 2, meth=ajax_method)

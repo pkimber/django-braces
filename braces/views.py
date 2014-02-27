@@ -479,16 +479,16 @@ class JSONResponseMixin(object):
     A mixin that allows you to easily serialize simple data such as a dict or
     Django models.
     """
-    content_type = u"application/json"
+    content_type = "application/json"
     json_dumps_kwargs = None
 
     def get_content_type(self):
         if self.content_type is None:
             raise ImproperlyConfigured(
-                u"%(cls)s is missing a content type. "
-                u"Define %(cls)s.content_type, or override "
-                u"%(cls)s.get_content_type()." % {
-                u"cls": self.__class__.__name__}
+                "%(cls)s is missing a content type. "
+                "Define %(cls)s.content_type, or override "
+                "%(cls)s.get_content_type()." % {
+                "cls": self.__class__.__name__}
             )
         return self.content_type
 
@@ -515,7 +515,7 @@ class JSONResponseMixin(object):
         Serializes objects using Django's builtin JSON serializer. Additional
         kwargs can be used the same way for django.core.serializers.serialize.
         """
-        json_data = serializers.serialize(u"json", objects, **kwargs)
+        json_data = serializers.serialize("json", objects, **kwargs)
         return HttpResponse(json_data, content_type=self.get_content_type())
 
 
@@ -529,7 +529,7 @@ class AjaxResponseMixin(object):
         request_method = request.method.lower()
 
         if request.is_ajax() and request_method in self.http_method_names:
-            handler = getattr(self, u"{0}_ajax".format(request_method),
+            handler = getattr(self, "{0}_ajax".format(request_method),
                               self.http_method_not_allowed)
             self.request = request
             self.args = args
@@ -572,7 +572,7 @@ class JsonRequestResponseMixin(JSONResponseMixin):
                     {'message': 'Thanks!'})
     """
     require_json = False
-    error_response_dict = {u"errors": [u"Improperly formatted request"]}
+    error_response_dict = {"errors": ["Improperly formatted request"]}
 
     def render_bad_request_response(self, error_dict=None):
         if error_dict is None:
